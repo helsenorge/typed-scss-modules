@@ -1,7 +1,4 @@
-import { bundleRequire } from "bundle-require";
-import JoyCon from "joycon";
-import path from "path";
-import { alerts, CLIOptions, ConfigOptions } from "./core";
+import { CLIOptions, ConfigOptions } from "./core";
 import { getDefaultImplementation } from "./implementations";
 import { nameFormatDefault } from "./sass";
 import {
@@ -12,12 +9,6 @@ import {
   logLevelDefault,
   quoteTypeDefault,
 } from "./typescript";
-
-const VALID_CONFIG_FILES = [
-  "typed-scss-modules.config.ts",
-  "typed-scss-modules.config.js",
-];
-const joycon = new JoyCon();
 
 /**
  * Load a custom config file in the project root directory with any options for this package.
@@ -30,36 +21,7 @@ const joycon = new JoyCon();
 export const loadConfig = async (): Promise<
   Record<string, never> | ConfigOptions
 > => {
-  const CURRENT_WORKING_DIRECTORY = process.cwd();
-
-  const configPath = await joycon.resolve(
-    VALID_CONFIG_FILES,
-    CURRENT_WORKING_DIRECTORY,
-    path.parse(CURRENT_WORKING_DIRECTORY).root
-  );
-
-  if (configPath) {
-    try {
-      const configModule = await bundleRequire({
-        filepath: configPath,
-      });
-
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      const config: ConfigOptions =
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        configModule.mod.config || configModule.mod.default || configModule.mod;
-
-      return config;
-    } catch (error) {
-      alerts.error(
-        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-        `An error occurred loading the config file "${configPath}":\n${error}`
-      );
-
-      return {};
-    }
-  }
-
+  // config file support has been removed, in order to be able remove dependencies
   return {};
 };
 

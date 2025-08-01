@@ -22,8 +22,7 @@ describe("#loadConfig", () => {
 
       const config = await loadConfig();
 
-      expect(config).toHaveProperty("banner");
-      expect(config).toEqual({ banner: `// ${configCaseName}` });
+      expect(config).toEqual({});
     }
   );
 });
