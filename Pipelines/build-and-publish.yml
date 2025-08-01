@@ -12,6 +12,8 @@ pool:
 variables:
   - name: node_version
     value: 16
+  - name: working_directory
+    value: .
   - name: HUSKY
     value: 0
 
@@ -29,6 +31,8 @@ stages:
 
           - task: npmAuthenticate@0
             displayName: "npm Authenticate .npmrc"
+            inputs:
+              workingFile: $(working_directory)/.npmrc
 
           - task: Npm@1
             displayName: npm ci
