@@ -15,12 +15,12 @@ describe("#loadConfig", () => {
     // Spoof the current working directory so when the config file is read
     // we can direct it to any path we want. This makes it easier to test
     // various kinds of configuration files as if they were in the root.
-    async (configCaseName) => {
+    (configCaseName) => {
       jest
         .spyOn(process, "cwd")
         .mockReturnValue(path.resolve(`__tests__/configs/${configCaseName}`));
 
-      const config = await loadConfig();
+      const config = loadConfig();
 
       expect(config).toEqual({});
     }

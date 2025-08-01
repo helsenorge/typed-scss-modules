@@ -18,9 +18,7 @@ import {
  *  - Default export: `export default {}`
  *  - `module.exports = {}`
  */
-export const loadConfig = async (): Promise<
-  Record<string, never> | ConfigOptions
-> => {
+export const loadConfig = (): Record<string, never> | ConfigOptions => {
   // config file support has been removed, in order to be able remove dependencies
   return {};
 };

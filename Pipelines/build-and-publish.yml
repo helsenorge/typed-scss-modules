@@ -1,0 +1,74 @@
+trigger:
+  branches:
+    include:
+      - master
+  tags:
+    include:
+      - "v*"
+
+pool:
+  name: Helsenorge_LinuxScaleSetAgents
+
+variables:
+  - name: node_version
+    value: 16
+  - name: HUSKY
+    value: 0
+
+stages:
+  - stage:
+    displayName: Build, Test and Publish
+    jobs:
+      - job:
+        displayName: Build, Test and Publish
+        steps:
+          - task: UseNode@1
+            displayName: "Use Node version"
+            inputs:
+              version: $(node_version)
+
+          - task: npmAuthenticate@0
+            displayName: "npm Authenticate .npmrc"
+
+          - task: Npm@1
+            displayName: npm ci
+            inputs:
+              command: ci
+
+          - task: Npm@1
+            displayName: test
+            inputs:
+              command: custom
+              customCommand: "run test"
+
+          - task: Npm@1
+            displayName: build
+            inputs:
+              command: custom
+              customCommand: "run build"
+
+          - task: Npm@1
+            displayName: check-types
+            inputs:
+              command: custom
+              customCommand: "run check-types"
+
+          - task: Npm@1
+            displayName: check-linting
+            inputs:
+              command: custom
+              customCommand: "run check-linting"
+
+          - task: Npm@1
+            displayName: check-formatting
+            inputs:
+              command: custom
+              customCommand: "run check-formatting"
+
+          - task: Npm@1
+            displayName: "Publish to Helsenorge-registry"
+            inputs:
+              command: publish
+              publishRegistry: useFeed
+              publishFeed: "926a1f6a-72f8-4464-b9be-a7978dee78b0"
+            condition: and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'), contains(variables['Build.SourceBranch'], 'refs/tags/v'))

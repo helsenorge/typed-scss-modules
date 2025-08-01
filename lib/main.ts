@@ -14,7 +14,7 @@ export const main = async (
   pattern: string,
   cliOptions: Partial<CLIOptions>
 ) => {
-  const configOptions = await loadConfig();
+  const configOptions = loadConfig();
   const options = mergeOptions(cliOptions, configOptions);
 
   setAlertsLogLevel(options.logLevel);
