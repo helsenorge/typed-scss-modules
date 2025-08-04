@@ -29,6 +29,9 @@ stages:
             inputs:
               version: $(node_version)
 
+          - script: 'echo "registry=https://pkgs.dev.azure.com/nhnfelles/_packaging/Helsenorge/npm/registry/" >>  $(working_directory)/.npmrc'
+            displayName: "Add Helsenorge-registry to .npmrc"
+
           - task: npmAuthenticate@0
             displayName: "npm Authenticate .npmrc"
             inputs:
