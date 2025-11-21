@@ -20,7 +20,7 @@ describe("getTypeDefinitionPath", () => {
 
       const generatedFilePath = path.resolve(
         process.cwd(),
-        "__generated__/some/path/style.scss.d.ts",
+        "__generated__/some/path/style.scss.d.ts"
       );
 
       expect(outputPath).toEqual(generatedFilePath);

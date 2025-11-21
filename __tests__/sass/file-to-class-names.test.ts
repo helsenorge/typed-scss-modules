@@ -5,7 +5,7 @@ describeAllImplementations(() => {
   describe("fileToClassNames", () => {
     it("converts a file path to an array of class names (default camel cased)", async () => {
       const result = await fileToClassNames(
-        `${__dirname}/../dummy-styles/complex.scss`,
+        `${__dirname}/../dummy-styles/complex.scss`
       );
 
       expect(result).toEqual([
@@ -23,7 +23,7 @@ describeAllImplementations(() => {
           `${__dirname}/../dummy-styles/complex.scss`,
           {
             nameFormat: ["kebab"],
-          },
+          }
         );
 
         expect(result).toEqual([
@@ -40,7 +40,7 @@ describeAllImplementations(() => {
           `${__dirname}/../dummy-styles/complex.scss`,
           {
             nameFormat: ["param"],
-          },
+          }
         );
 
         expect(result).toEqual([
@@ -57,7 +57,7 @@ describeAllImplementations(() => {
           `${__dirname}/../dummy-styles/complex.scss`,
           {
             nameFormat: ["snake"],
-          },
+          }
         );
 
         expect(result).toEqual([
@@ -74,7 +74,7 @@ describeAllImplementations(() => {
           `${__dirname}/../dummy-styles/dashes.scss`,
           {
             nameFormat: ["dashes"],
-          },
+          }
         );
 
         expect(result).toEqual(["App", "appHeader", "Logo"]);
@@ -85,7 +85,7 @@ describeAllImplementations(() => {
           `${__dirname}/../dummy-styles/dashes.scss`,
           {
             nameFormat: ["none"],
-          },
+          }
         );
 
         expect(result).toEqual(["App", "App-Header", "Logo"]);
@@ -96,7 +96,7 @@ describeAllImplementations(() => {
           `${__dirname}/../dummy-styles/complex.scss`,
           {
             nameFormat: ["all"],
-          },
+          }
         );
 
         expect(result).toEqual([
@@ -123,7 +123,7 @@ describeAllImplementations(() => {
           `${__dirname}/../dummy-styles/complex.scss`,
           {
             nameFormat: ["kebab", "snake"],
-          },
+          }
         );
 
         expect(result).toEqual([
@@ -145,7 +145,7 @@ describeAllImplementations(() => {
           `${__dirname}/../dummy-styles/complex.scss`,
           {
             nameFormat: "snake",
-          },
+          }
         );
 
         expect(result).toEqual([
@@ -167,7 +167,7 @@ describeAllImplementations(() => {
               "~fancy-import": "complex",
               "~another": "style",
             },
-          },
+          }
         );
 
         expect(result).toEqual([
@@ -193,7 +193,7 @@ describeAllImplementations(() => {
             aliasPrefixes: {
               "~": "nested-styles/",
             },
-          },
+          }
         );
 
         expect(result).toEqual([
@@ -212,7 +212,7 @@ describeAllImplementations(() => {
       it("converts a file that contains a composes dependency from another file", async () => {
         const result = await fileToClassNames(
           `${__dirname}/../dummy-styles/composes.scss`,
-          {},
+          {}
         );
 
         expect(result).toEqual(["composedClass"]);
@@ -225,7 +225,7 @@ describeAllImplementations(() => {
           `${__dirname}/../dummy-styles/global-variables.scss`,
           {
             additionalData: "$global-red: red;",
-          },
+          }
         );
 
         expect(result).toEqual(["globalStyle"]);

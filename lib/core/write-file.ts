@@ -17,7 +17,7 @@ import { CLIOptions } from "./types";
  */
 export const writeFile = async (
   file: string,
-  options: CLIOptions,
+  options: CLIOptions
 ): Promise<void> => {
   try {
     const classNames = await fileToClassNames(file, options);

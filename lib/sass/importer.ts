@@ -29,7 +29,7 @@ export const aliasImporter =
     }
 
     const prefixMatch = Object.keys(aliasPrefixes).find((prefix) =>
-      url.startsWith(prefix),
+      url.startsWith(prefix)
     );
 
     if (prefixMatch) {

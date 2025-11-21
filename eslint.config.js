@@ -21,7 +21,7 @@ module.exports = defineConfig([
       "eslint:recommended",
       "plugin:@typescript-eslint/recommended",
       "plugin:jest-formatting/strict",
-      "plugin:jest/recommended",
+      "plugin:jest/recommended"
     ),
 
     languageOptions: {
@@ -50,7 +50,7 @@ module.exports = defineConfig([
   {
     files: ["**/*.ts", "**/*.tsx"],
     extends: compat.extends(
-      "plugin:@typescript-eslint/recommended-requiring-type-checking",
+      "plugin:@typescript-eslint/recommended-requiring-type-checking"
     ),
 
     languageOptions: {

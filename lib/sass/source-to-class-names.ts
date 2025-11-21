@@ -6,7 +6,7 @@ import PostcssModulesPlugin from "postcss-modules";
  */
 export const sourceToClassNames = async (
   source: { toString(): string },
-  file: string,
+  file: string
 ) => {
   let result: Record<string, string> = {};
   await postcss([
