@@ -2,7 +2,7 @@ import fs from "fs";
 import { generate } from "../../lib/core";
 import { describeAllImplementations } from "../helpers";
 
-describeAllImplementations((implementation) => {
+describeAllImplementations(() => {
   describe("generate", () => {
     beforeEach(() => {
       // Only mock the write, so the example files can still be read.
@@ -22,7 +22,7 @@ describeAllImplementations((implementation) => {
         exportTypeInterface: "Styles",
         listDifferent: false,
         ignore: [],
-        implementation,
+
         quoteType: "single",
         updateStaleOnly: false,
         logLevel: "verbose",

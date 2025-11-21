@@ -5,7 +5,7 @@ import {
   snakeCase,
 } from "change-case";
 import fs from "fs";
-import { Implementations, getImplementation } from "../implementations";
+import { getImplementation } from "../implementations";
 import { Aliases, SASSImporterOptions, customImporters } from "./importer";
 import { sourceToClassNames } from "./source-to-class-names";
 
@@ -38,7 +38,6 @@ export interface SASSOptions extends SASSImporterOptions {
   additionalData?: string;
   includePaths?: string[];
   nameFormat?: string | string[];
-  implementation: Implementations;
 }
 export const nameFormatDefault: NameFormatWithTransformer = "camel";
 
@@ -48,13 +47,12 @@ export const fileToClassNames = async (
     additionalData,
     includePaths = [],
     nameFormat: rawNameFormat,
-    implementation,
     aliases,
     aliasPrefixes,
     importer,
   }: SASSOptions = {} as SASSOptions,
 ) => {
-  const { renderSync } = getImplementation(implementation);
+  const { renderSync } = getImplementation();
 
   const nameFormat = (
     typeof rawNameFormat === "string" ? [rawNameFormat] : rawNameFormat

@@ -3,7 +3,7 @@ import path from "path";
 import { writeFile } from "../../lib/core";
 import { describeAllImplementations } from "../helpers";
 
-describeAllImplementations((implementation) => {
+describeAllImplementations(() => {
   describe("writeFile", () => {
     beforeEach(() => {
       // Only mock the write, so the example files can still be read.
@@ -30,7 +30,6 @@ describeAllImplementations((implementation) => {
         exportTypeInterface: "Styles",
         listDifferent: false,
         ignore: [],
-        implementation,
         quoteType: "single",
         updateStaleOnly: false,
         logLevel: "verbose",
@@ -64,7 +63,6 @@ describeAllImplementations((implementation) => {
         exportTypeInterface: "Styles",
         listDifferent: false,
         ignore: [],
-        implementation,
         quoteType: "single",
         updateStaleOnly: false,
         logLevel: "verbose",
@@ -98,7 +96,6 @@ describeAllImplementations((implementation) => {
         exportTypeInterface: "Styles",
         listDifferent: false,
         ignore: [],
-        implementation,
         quoteType: "single",
         updateStaleOnly: false,
         logLevel: "verbose",
@@ -142,7 +139,6 @@ describeAllImplementations((implementation) => {
           exportTypeInterface: "Styles",
           listDifferent: false,
           ignore: [],
-          implementation,
           quoteType: "single",
           updateStaleOnly: false,
           logLevel: "verbose",
@@ -174,7 +170,6 @@ describeAllImplementations((implementation) => {
           exportTypeInterface: "Styles",
           listDifferent: false,
           ignore: [],
-          implementation,
           quoteType: "single",
           updateStaleOnly: false,
           logLevel: "verbose",
@@ -233,7 +228,6 @@ describeAllImplementations((implementation) => {
           exportTypeInterface: "Styles",
           listDifferent: false,
           ignore: [],
-          implementation,
           quoteType: "single",
           updateStaleOnly: true,
           logLevel: "verbose",
@@ -269,7 +263,6 @@ describeAllImplementations((implementation) => {
           exportTypeInterface: "Styles",
           listDifferent: false,
           ignore: [],
-          implementation,
           quoteType: "single",
           updateStaleOnly: true,
           logLevel: "verbose",
@@ -294,7 +287,6 @@ describeAllImplementations((implementation) => {
           exportTypeInterface: "Styles",
           listDifferent: false,
           ignore: [],
-          implementation,
           quoteType: "single",
           updateStaleOnly: true,
           logLevel: "verbose",
@@ -317,7 +309,6 @@ describeAllImplementations((implementation) => {
           exportTypeInterface: "Styles",
           listDifferent: false,
           ignore: [],
-          implementation,
           quoteType: "single",
           updateStaleOnly: true,
           logLevel: "verbose",

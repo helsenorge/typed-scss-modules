@@ -1,7 +1,7 @@
 import { listDifferent } from "../../lib/core";
 import { describeAllImplementations } from "../helpers";
 
-describeAllImplementations((implementation) => {
+describeAllImplementations(() => {
   describe("listDifferent", () => {
     let exit: jest.SpyInstance;
 
@@ -33,7 +33,7 @@ describeAllImplementations((implementation) => {
           "~": "nested-styles/",
         },
         ignore: [],
-        implementation,
+
         quoteType: "single",
         updateStaleOnly: false,
         logLevel: "verbose",
@@ -62,7 +62,7 @@ describeAllImplementations((implementation) => {
         exportTypeInterface: "Styles",
         listDifferent: true,
         ignore: [],
-        implementation,
+
         quoteType: "single",
         updateStaleOnly: false,
         logLevel: "verbose",
@@ -90,7 +90,7 @@ describeAllImplementations((implementation) => {
         exportTypeInterface: "Styles",
         listDifferent: true,
         ignore: [],
-        implementation,
+
         quoteType: "single",
         updateStaleOnly: false,
         logLevel: "verbose",
@@ -114,7 +114,7 @@ describeAllImplementations((implementation) => {
         exportTypeInterface: "Styles",
         listDifferent: true,
         ignore: [],
-        implementation,
+
         quoteType: "single",
         updateStaleOnly: false,
         logLevel: "verbose",
@@ -145,7 +145,7 @@ describeAllImplementations((implementation) => {
         exportTypeInterface: "Styles",
         listDifferent: true,
         ignore: ["**/no-generated.scss"],
-        implementation,
+
         quoteType: "single",
         updateStaleOnly: false,
         logLevel: "verbose",

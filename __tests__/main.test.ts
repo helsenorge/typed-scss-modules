@@ -5,7 +5,7 @@ import { alerts } from "../lib/core";
 import { main } from "../lib/main";
 import { describeAllImplementations } from "./helpers";
 
-describeAllImplementations((implementation) => {
+describeAllImplementations(() => {
   describe("main", () => {
     let writeFileSyncSpy: jest.SpyInstance;
 
@@ -38,7 +38,6 @@ describeAllImplementations((implementation) => {
         exportTypeInterface: "Styles",
         listDifferent: false,
         ignore: [],
-        implementation,
         quoteType: "single",
         updateStaleOnly: false,
         logLevel: "verbose",
@@ -79,7 +78,6 @@ describeAllImplementations((implementation) => {
         exportTypeInterface: "Styles",
         listDifferent: false,
         ignore: ["**/style.scss"],
-        implementation,
         quoteType: "single",
         updateStaleOnly: false,
         logLevel: "verbose",

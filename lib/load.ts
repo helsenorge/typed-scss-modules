@@ -1,5 +1,4 @@
 import { CLIOptions, ConfigOptions } from "./core";
-import { getDefaultImplementation } from "./implementations";
 import { nameFormatDefault } from "./sass";
 import {
   bannerTypeDefault,
@@ -26,7 +25,6 @@ export const loadConfig = (): Record<string, never> | ConfigOptions => {
 // Default values for all options that need defaults.
 export const DEFAULT_OPTIONS: CLIOptions = {
   nameFormat: [nameFormatDefault],
-  implementation: getDefaultImplementation(),
   exportType: exportTypeDefault,
   exportTypeName: exportTypeNameDefault,
   exportTypeInterface: exportTypeInterfaceDefault,

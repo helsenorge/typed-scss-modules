@@ -1,7 +1,7 @@
 import { fileToClassNames } from "../../lib/sass";
 import { describeAllImplementations } from "../helpers";
 
-describeAllImplementations((implementation) => {
+describeAllImplementations(() => {
   describe("fileToClassNames", () => {
     it("converts a file path to an array of class names (default camel cased)", async () => {
       const result = await fileToClassNames(
@@ -23,7 +23,6 @@ describeAllImplementations((implementation) => {
           `${__dirname}/../dummy-styles/complex.scss`,
           {
             nameFormat: ["kebab"],
-            implementation,
           },
         );
 
@@ -41,7 +40,6 @@ describeAllImplementations((implementation) => {
           `${__dirname}/../dummy-styles/complex.scss`,
           {
             nameFormat: ["param"],
-            implementation,
           },
         );
 
@@ -59,7 +57,6 @@ describeAllImplementations((implementation) => {
           `${__dirname}/../dummy-styles/complex.scss`,
           {
             nameFormat: ["snake"],
-            implementation,
           },
         );
 
@@ -77,7 +74,6 @@ describeAllImplementations((implementation) => {
           `${__dirname}/../dummy-styles/dashes.scss`,
           {
             nameFormat: ["dashes"],
-            implementation,
           },
         );
 
@@ -89,7 +85,6 @@ describeAllImplementations((implementation) => {
           `${__dirname}/../dummy-styles/dashes.scss`,
           {
             nameFormat: ["none"],
-            implementation,
           },
         );
 
@@ -101,7 +96,6 @@ describeAllImplementations((implementation) => {
           `${__dirname}/../dummy-styles/complex.scss`,
           {
             nameFormat: ["all"],
-            implementation,
           },
         );
 
@@ -129,7 +123,6 @@ describeAllImplementations((implementation) => {
           `${__dirname}/../dummy-styles/complex.scss`,
           {
             nameFormat: ["kebab", "snake"],
-            implementation,
           },
         );
 
@@ -152,7 +145,6 @@ describeAllImplementations((implementation) => {
           `${__dirname}/../dummy-styles/complex.scss`,
           {
             nameFormat: "snake",
-            implementation,
           },
         );
 
@@ -175,7 +167,6 @@ describeAllImplementations((implementation) => {
               "~fancy-import": "complex",
               "~another": "style",
             },
-            implementation,
           },
         );
 
@@ -202,7 +193,6 @@ describeAllImplementations((implementation) => {
             aliasPrefixes: {
               "~": "nested-styles/",
             },
-            implementation,
           },
         );
 
@@ -222,9 +212,7 @@ describeAllImplementations((implementation) => {
       it("converts a file that contains a composes dependency from another file", async () => {
         const result = await fileToClassNames(
           `${__dirname}/../dummy-styles/composes.scss`,
-          {
-            implementation,
-          },
+          {},
         );
 
         expect(result).toEqual(["composedClass"]);
@@ -236,7 +224,6 @@ describeAllImplementations((implementation) => {
         const result = await fileToClassNames(
           `${__dirname}/../dummy-styles/global-variables.scss`,
           {
-            implementation,
             additionalData: "$global-red: red;",
           },
         );
