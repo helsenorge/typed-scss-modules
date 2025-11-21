@@ -1,47 +1,46 @@
 #!/usr/bin/env node
 
 import yargs from "yargs";
-import { IMPLEMENTATIONS } from "./implementations";
 import { main } from "./main";
 import { Aliases, NAME_FORMATS } from "./sass";
 import { EXPORT_TYPES, LOG_LEVELS, QUOTE_TYPES } from "./typescript";
 
 const { _: patterns, ...rest } = yargs
   .usage(
-    "Generate .scss.d.ts from CSS module .scss files.\nUsage: $0 <glob pattern> [options]",
+    "Generate .scss.d.ts from CSS module .scss files.\nUsage: $0 <glob pattern> [options]"
   )
   .example("$0 src", "All .scss files at any level in the src directory")
   .example(
     "$0 src/**/*.scss",
-    "All .scss files at any level in the src directory",
+    "All .scss files at any level in the src directory"
   )
   .example(
     "$0 src/**/*.scss --watch",
-    "Watch all .scss files at any level in the src directory that are added or changed",
+    "Watch all .scss files at any level in the src directory that are added or changed"
   )
   .example(
     "$0 src/**/*.scss --includePaths src/core src/variables",
-    'Search the "core" and "variables" directory when resolving imports',
+    'Search the "core" and "variables" directory when resolving imports'
   )
   .example(
     "$0 src/**/*.scss --aliases.~name variables",
-    'Replace all imports for "~name" with "variables"',
+    'Replace all imports for "~name" with "variables"'
   )
   .example(
     "$0 src/**/*.scss --aliasPrefixes.~ ./node_modules/",
-    'Replace the "~" prefix with "./node_modules/" for all imports beginning with "~"',
+    'Replace the "~" prefix with "./node_modules/" for all imports beginning with "~"'
   )
   .example(
     "$0 src/**/*.scss --ignore **/secret.scss",
-    'Ignore any file names "secret.scss"',
+    'Ignore any file names "secret.scss"'
   )
   .example(
     "$0 src/**/*.scss --implementation sass",
-    "Use the Dart SASS package",
+    "Use the Dart SASS package"
   )
   .example(
     "$0 src/**/*.scss -e default --quoteType double",
-    "Use double quotes around class name definitions rather than single quotes.",
+    "Use double quotes around class name definitions rather than single quotes."
   )
   .example("$0 src/**/*.scss --logLevel error", "Output only errors")
   .demandCommand(1)
@@ -66,11 +65,6 @@ const { _: patterns, ...rest } = yargs
     string: true,
     choices: NAME_FORMATS,
     describe: "The name format that should be used to transform class names.",
-  })
-  .option("implementation", {
-    choices: IMPLEMENTATIONS,
-    describe:
-      "The SASS package to used to compile. This will default to the sass implementation you have installed.",
   })
   .option("exportType", {
     choices: EXPORT_TYPES,

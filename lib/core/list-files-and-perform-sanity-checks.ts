@@ -1,4 +1,4 @@
-import glob from "glob";
+import { globSync } from "glob";
 import { alerts } from "./alerts";
 import { ConfigOptions } from "./types";
 
@@ -11,10 +11,10 @@ import { ConfigOptions } from "./types";
  */
 export function listFilesAndPerformSanityChecks(
   pattern: string,
-  options: ConfigOptions,
+  options: ConfigOptions
 ): string[] {
   // Find all the files that match the provided pattern.
-  const files = glob.sync(pattern, { ignore: options.ignore });
+  const files = globSync(pattern, { ignore: options.ignore });
 
   if (!files || !files.length) {
     alerts.error("No files found.");
@@ -24,7 +24,7 @@ export function listFilesAndPerformSanityChecks(
   // provide a (hopefully) helpful warning.
   if (files.length === 1) {
     alerts.warn(
-      `Only 1 file found for ${pattern}. If using a glob pattern (eg: dir/**/*.scss) make sure to wrap in quotes (eg: "dir/**/*.scss").`,
+      `Only 1 file found for ${pattern}. If using a glob pattern (eg: dir/**/*.scss) make sure to wrap in quotes (eg: "dir/**/*.scss").`
     );
   }
 
