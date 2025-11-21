@@ -11,7 +11,7 @@ pool:
 
 variables:
   - name: node_version
-    value: 16
+    value: 24
   - name: working_directory
     value: .
   - name: HUSKY
