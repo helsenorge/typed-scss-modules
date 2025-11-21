@@ -4,7 +4,7 @@ export function canResolvePrettier() {
   try {
     require.resolve("prettier");
     return true;
-  } catch (_error) {
+  } catch {
     // cannot resolve prettier
     return false;
   }

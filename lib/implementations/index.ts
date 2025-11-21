@@ -27,6 +27,6 @@ export const getDefaultImplementation = (): Implementations => {
  * @param implementation the desired implementation.
  */
 export const getImplementation = (): Implementation => {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-require-imports
   return require("sass");
 };
