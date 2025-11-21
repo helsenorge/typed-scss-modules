@@ -19,7 +19,7 @@ type Implementation = typeof nodeSass | typeof sass;
  * @param resolver DO NOT USE - this is unfortunately necessary only for testing.
  */
 export const getDefaultImplementation = (
-  resolver: RequireResolve = require.resolve
+  resolver: RequireResolve = require.resolve,
 ): Implementations => {
   let pkg: Implementations = "node-sass";
 
@@ -43,7 +43,7 @@ export const getDefaultImplementation = (
  * @param implementation the desired implementation.
  */
 export const getImplementation = (
-  implementation?: Implementations
+  implementation?: Implementations,
 ): Implementation => {
   if (implementation === "sass") {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return

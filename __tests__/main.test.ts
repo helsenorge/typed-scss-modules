@@ -59,11 +59,11 @@ describeAllImplementations((implementation) => {
 
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         `${expectedDirname}/complex.scss.d.ts`,
-        "export declare const nestedAnother: string;\nexport declare const nestedClass: string;\nexport declare const number1: string;\nexport declare const someStyles: string;\nexport declare const whereSelector: string;\n"
+        "export declare const nestedAnother: string;\nexport declare const nestedClass: string;\nexport declare const number1: string;\nexport declare const someStyles: string;\nexport declare const whereSelector: string;\n",
       );
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         `${expectedDirname}/style.scss.d.ts`,
-        "export declare const someClass: string;\n"
+        "export declare const someClass: string;\n",
       );
     });
 
@@ -100,17 +100,17 @@ describeAllImplementations((implementation) => {
 
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         `${expectedDirname}/complex.scss.d.ts`,
-        "export declare const nestedAnother: string;\nexport declare const nestedClass: string;\nexport declare const number1: string;\nexport declare const someStyles: string;\nexport declare const whereSelector: string;\n"
+        "export declare const nestedAnother: string;\nexport declare const nestedClass: string;\nexport declare const number1: string;\nexport declare const someStyles: string;\nexport declare const whereSelector: string;\n",
       );
 
       // Files that should match the ignore pattern.
       expect(fs.writeFileSync).not.toHaveBeenCalledWith(
         `${expectedDirname}/style.scss.d.ts`,
-        expect.anything()
+        expect.anything(),
       );
       expect(fs.writeFileSync).not.toHaveBeenCalledWith(
         `${expectedDirname}/nested-styles/style.scss.d.ts`,
-        expect.anything()
+        expect.anything(),
       );
     });
 

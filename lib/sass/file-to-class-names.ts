@@ -28,7 +28,7 @@ const transformersMap = {
 
 type NameFormatWithTransformer = keyof typeof transformersMap;
 const NAME_FORMATS_WITH_TRANSFORMER = Object.keys(
-  transformersMap
+  transformersMap,
 ) as NameFormatWithTransformer[];
 
 export const NAME_FORMATS = [...NAME_FORMATS_WITH_TRANSFORMER, "all"] as const;
@@ -52,7 +52,7 @@ export const fileToClassNames = async (
     aliases,
     aliasPrefixes,
     importer,
-  }: SASSOptions = {} as SASSOptions
+  }: SASSOptions = {} as SASSOptions,
 ) => {
   const { renderSync } = getImplementation(implementation);
 

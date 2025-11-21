@@ -12,7 +12,7 @@ import { loadConfig, mergeOptions } from "./load";
 
 export const main = async (
   pattern: string,
-  cliOptions: Partial<CLIOptions>
+  cliOptions: Partial<CLIOptions>,
 ) => {
   const configOptions = loadConfig();
   const options = mergeOptions(cliOptions, configOptions);

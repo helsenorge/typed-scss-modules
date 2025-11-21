@@ -17,7 +17,7 @@ const removeFile = (file: string): void => {
     }
   } catch (error) {
     alerts.error(
-      `An error occurred removing ${file}:\n${JSON.stringify(error)}`
+      `An error occurred removing ${file}:\n${JSON.stringify(error)}`,
     );
   }
 };
@@ -29,7 +29,7 @@ const removeFile = (file: string): void => {
  */
 export const removeSCSSTypeDefinitionFile = (
   file: string,
-  options: ConfigOptions
+  options: ConfigOptions,
 ): void => {
   const path = getTypeDefinitionPath(file, options);
   removeFile(path);

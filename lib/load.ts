@@ -43,7 +43,7 @@ export const DEFAULT_OPTIONS: CLIOptions = {
 };
 
 const removedUndefinedValues = <Obj extends Record<string, unknown>>(
-  obj: Obj
+  obj: Obj,
 ): Obj => {
   for (const key in obj) {
     if (obj[key] === undefined) {
@@ -64,7 +64,7 @@ const removedUndefinedValues = <Obj extends Record<string, unknown>>(
  */
 export const mergeOptions = (
   cliOptions: Partial<CLIOptions>,
-  configOptions: Partial<ConfigOptions>
+  configOptions: Partial<ConfigOptions>,
 ): ConfigOptions => {
   return {
     ...DEFAULT_OPTIONS,

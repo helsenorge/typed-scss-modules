@@ -22,7 +22,7 @@ describe("classNamesToTypeDefinitions (without Prettier)", () => {
       });
 
       expect(definition).toEqual(
-        "export declare const myClass: string;\nexport declare const yourClass: string;\n"
+        "export declare const myClass: string;\nexport declare const yourClass: string;\n",
       );
     });
 
@@ -47,7 +47,7 @@ describe("classNamesToTypeDefinitions (without Prettier)", () => {
 
       expect(definition).toEqual("export declare const myClass: string;\n");
       expect(console.log).toHaveBeenCalledWith(
-        expect.stringContaining(`[SKIPPING] 'if' is a reserved keyword`)
+        expect.stringContaining(`[SKIPPING] 'if' is a reserved keyword`),
       );
     });
 
@@ -61,7 +61,9 @@ describe("classNamesToTypeDefinitions (without Prettier)", () => {
 
       expect(definition).toEqual("export declare const myClass: string;\n");
       expect(console.log).toHaveBeenCalledWith(
-        expect.stringContaining(`[SKIPPING] 'invalid-variable' contains dashes`)
+        expect.stringContaining(
+          `[SKIPPING] 'invalid-variable' contains dashes`,
+        ),
       );
     });
   });
@@ -76,7 +78,7 @@ describe("classNamesToTypeDefinitions (without Prettier)", () => {
       });
 
       expect(definition).toEqual(
-        "export type Styles = {\n  'myClass': string;\n  'yourClass': string;\n};\n\nexport type ClassNames = keyof Styles;\n\ndeclare const styles: Styles;\n\nexport default styles;\n"
+        "export type Styles = {\n  'myClass': string;\n  'yourClass': string;\n};\n\nexport type ClassNames = keyof Styles;\n\ndeclare const styles: Styles;\n\nexport default styles;\n",
       );
     });
 
@@ -117,7 +119,7 @@ describe("classNamesToTypeDefinitions (without Prettier)", () => {
       });
 
       expect(definition).toEqual(
-        'export type Styles = {\n  "myClass": string;\n  "yourClass": string;\n};\n\nexport type ClassNames = keyof Styles;\n\ndeclare const styles: Styles;\n\nexport default styles;\n'
+        'export type Styles = {\n  "myClass": string;\n  "yourClass": string;\n};\n\nexport type ClassNames = keyof Styles;\n\ndeclare const styles: Styles;\n\nexport default styles;\n',
       );
     });
 
@@ -131,7 +133,7 @@ describe("classNamesToTypeDefinitions (without Prettier)", () => {
       });
 
       expect(definition).toEqual(
-        "export declare const myClass: string;\nexport declare const yourClass: string;\n"
+        "export declare const myClass: string;\nexport declare const yourClass: string;\n",
       );
     });
   });
@@ -147,7 +149,7 @@ describe("classNamesToTypeDefinitions (without Prettier)", () => {
       });
 
       expect(definition).toEqual(
-        "export type Styles = {\n  'myClass': string;\n  'yourClass': string;\n};\n\nexport type Classes = keyof Styles;\n\ndeclare const styles: Styles;\n\nexport default styles;\n"
+        "export type Styles = {\n  'myClass': string;\n  'yourClass': string;\n};\n\nexport type Classes = keyof Styles;\n\ndeclare const styles: Styles;\n\nexport default styles;\n",
       );
     });
 
@@ -161,7 +163,7 @@ describe("classNamesToTypeDefinitions (without Prettier)", () => {
       });
 
       expect(definition).toEqual(
-        "export type IStyles = {\n  'myClass': string;\n  'yourClass': string;\n};\n\nexport type ClassNames = keyof IStyles;\n\ndeclare const styles: IStyles;\n\nexport default styles;\n"
+        "export type IStyles = {\n  'myClass': string;\n  'yourClass': string;\n};\n\nexport type ClassNames = keyof IStyles;\n\ndeclare const styles: IStyles;\n\nexport default styles;\n",
       );
     });
   });

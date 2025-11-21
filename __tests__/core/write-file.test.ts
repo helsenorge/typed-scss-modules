@@ -40,15 +40,15 @@ describeAllImplementations((implementation) => {
 
       const expectedPath = path.join(
         process.cwd(),
-        "__tests__/dummy-styles/style.scss.d.ts"
+        "__tests__/dummy-styles/style.scss.d.ts",
       );
 
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         expectedPath,
-        "export declare const someClass: string;\n"
+        "export declare const someClass: string;\n",
       );
       expect(console.log).toHaveBeenCalledWith(
-        expect.stringContaining(`[GENERATED TYPES] ${expectedPath}`)
+        expect.stringContaining(`[GENERATED TYPES] ${expectedPath}`),
       );
     });
 
@@ -74,15 +74,15 @@ describeAllImplementations((implementation) => {
 
       const expectedPath = path.join(
         process.cwd(),
-        "__tests__/dummy-styles/style.d.scss.ts"
+        "__tests__/dummy-styles/style.d.scss.ts",
       );
 
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         expectedPath,
-        "export declare const someClass: string;\n"
+        "export declare const someClass: string;\n",
       );
       expect(console.log).toHaveBeenCalledWith(
-        expect.stringContaining(`[GENERATED TYPES] ${expectedPath}`)
+        expect.stringContaining(`[GENERATED TYPES] ${expectedPath}`),
       );
     });
 
@@ -108,7 +108,7 @@ describeAllImplementations((implementation) => {
 
       expect(fs.writeFileSync).not.toHaveBeenCalled();
       expect(console.log).toHaveBeenCalledWith(
-        expect.stringContaining(`[NO GENERATED TYPES] ${testFile}`)
+        expect.stringContaining(`[NO GENERATED TYPES] ${testFile}`),
       );
     });
 
@@ -116,7 +116,7 @@ describeAllImplementations((implementation) => {
       const testFile = path.resolve(__dirname, "..", "dummy-styles/empty.scss");
       const existingTypes = path.join(
         process.cwd(),
-        "__tests__/dummy-styles/empty.scss.d.ts"
+        "__tests__/dummy-styles/empty.scss.d.ts",
       );
       const originalExistsSync = fs.existsSync;
 
@@ -124,7 +124,7 @@ describeAllImplementations((implementation) => {
         jest
           .spyOn(fs, "existsSync")
           .mockImplementation((p) =>
-            p === existingTypes ? true : originalExistsSync(p)
+            p === existingTypes ? true : originalExistsSync(p),
           );
       });
 
@@ -152,7 +152,7 @@ describeAllImplementations((implementation) => {
 
         expect(fs.unlinkSync).toHaveBeenCalledWith(existingTypes);
         expect(console.log).toHaveBeenCalledWith(
-          expect.stringContaining(`[REMOVED] ${existingTypes}`)
+          expect.stringContaining(`[REMOVED] ${existingTypes}`),
         );
       });
     });
@@ -162,7 +162,7 @@ describeAllImplementations((implementation) => {
         const testFile = path.resolve(
           __dirname,
           "..",
-          "dummy-styles/style.scss"
+          "dummy-styles/style.scss",
         );
 
         await writeFile(testFile, {
@@ -184,15 +184,15 @@ describeAllImplementations((implementation) => {
 
         const expectedPath = path.join(
           process.cwd(),
-          "__generated__/__tests__/dummy-styles/style.scss.d.ts"
+          "__generated__/__tests__/dummy-styles/style.scss.d.ts",
         );
 
         expect(fs.writeFileSync).toHaveBeenCalledWith(
           expectedPath,
-          "export declare const someClass: string;\n"
+          "export declare const someClass: string;\n",
         );
         expect(console.log).toHaveBeenCalledWith(
-          expect.stringContaining(`[GENERATED TYPES] ${expectedPath}`)
+          expect.stringContaining(`[GENERATED TYPES] ${expectedPath}`),
         );
       });
     });
@@ -202,7 +202,7 @@ describeAllImplementations((implementation) => {
       const testFile = path.resolve(__dirname, "..", "dummy-styles/style.scss");
       const expectedPath = path.join(
         process.cwd(),
-        "__tests__/dummy-styles/style.scss.d.ts"
+        "__tests__/dummy-styles/style.scss.d.ts",
       );
 
       beforeEach(() => {
@@ -246,7 +246,7 @@ describeAllImplementations((implementation) => {
 
       it("updates files that aren't stale", async () => {
         (fs.statSync as jest.Mock).mockImplementation(
-          () => new Date(2020, 0, 1)
+          () => new Date(2020, 0, 1),
         );
 
         // Mock outdated file contents.
@@ -256,8 +256,8 @@ describeAllImplementations((implementation) => {
             opts?: {
               encoding?: null | undefined;
               flag?: string | undefined;
-            } | null
-          ) => (p === expectedPath ? `` : originalReadFileSync(p, opts))
+            } | null,
+          ) => (p === expectedPath ? `` : originalReadFileSync(p, opts)),
         );
 
         await writeFile(testFile, {
@@ -282,7 +282,7 @@ describeAllImplementations((implementation) => {
 
       it("skips files that aren't stale but type definition contents haven't changed", async () => {
         (fs.statSync as jest.Mock).mockImplementation(
-          () => new Date(2020, 0, 1)
+          () => new Date(2020, 0, 1),
         );
 
         await writeFile(testFile, {

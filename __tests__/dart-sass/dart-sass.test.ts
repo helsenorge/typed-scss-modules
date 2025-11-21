@@ -56,7 +56,7 @@ describe("dart-sass", () => {
 
     expect(fs.writeFileSync).toHaveBeenCalledWith(
       `${expectedDirname}/use.scss.d.ts`,
-      "export declare const foo: string;\n"
+      "export declare const foo: string;\n",
     );
   });
 });

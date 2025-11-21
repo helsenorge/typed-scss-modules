@@ -12,8 +12,8 @@ describe("getImplementation", () => {
     expect(
       getImplementation(
         // @ts-expect-error invalid implementation
-        "wat-sass"
-      )
+        "wat-sass",
+      ),
     ).toEqual(nodeSass);
     expect(getImplementation()).toEqual(nodeSass);
   });

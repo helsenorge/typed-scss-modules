@@ -22,7 +22,7 @@ describe("#aliasImporter", () => {
     });
     expect(importer.call(fakeImporterThis, "output", fakePrev)).toBeNull();
     expect(
-      importer.call(fakeImporterThis, "input-substring", fakePrev)
+      importer.call(fakeImporterThis, "input-substring", fakePrev),
     ).toBeNull();
     expect(importer.call(fakeImporterThis, "other", fakePrev)).toBeNull();
   });
@@ -41,7 +41,7 @@ describe("#aliasImporter", () => {
     });
     expect(importer.call(fakeImporterThis, "output~", fakePrev)).toBeNull();
     expect(
-      importer.call(fakeImporterThis, "input-substring-abc", fakePrev)
+      importer.call(fakeImporterThis, "input-substring-abc", fakePrev),
     ).toBeNull();
     expect(importer.call(fakeImporterThis, "other", fakePrev)).toBeNull();
   });

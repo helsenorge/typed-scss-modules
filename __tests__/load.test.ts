@@ -23,7 +23,7 @@ describe("#loadConfig", () => {
       const config = loadConfig();
 
       expect(config).toEqual({});
-    }
+    },
   );
 });
 
@@ -52,8 +52,8 @@ describe("#mergeOptions", () => {
           banner: "// override",
           allowArbitraryExtensions: true,
         },
-        {}
-      )
+        {},
+      ),
     ).toEqual({
       nameFormat: ["kebab"],
       implementation: "sass",
@@ -96,8 +96,8 @@ describe("#mergeOptions", () => {
           outputFolder: "__generated__",
           importer,
           allowArbitraryExtensions: true,
-        }
-      )
+        },
+      ),
     ).toEqual({
       nameFormat: ["kebab"],
       implementation: "sass",
@@ -156,8 +156,8 @@ describe("#mergeOptions", () => {
           banner: "// not override",
           outputFolder: "__generated__",
           importer,
-        }
-      )
+        },
+      ),
     ).toEqual({
       nameFormat: ["kebab"],
       implementation: "sass",
@@ -221,8 +221,8 @@ describe("#mergeOptions", () => {
           outputFolder: "__generated__",
           importer,
           allowArbitraryExtensions: false,
-        }
-      )
+        },
+      ),
     ).toEqual({
       aliases: {},
       aliasPrefixes: {},

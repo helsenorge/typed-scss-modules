@@ -11,7 +11,7 @@ const CURRENT_WORKING_DIRECTORY = process.cwd();
  */
 export const getTypeDefinitionPath = (
   file: string,
-  options: ConfigOptions
+  options: ConfigOptions,
 ): string => {
   let resolvedPath = file;
 
@@ -20,7 +20,7 @@ export const getTypeDefinitionPath = (
     resolvedPath = path.resolve(
       CURRENT_WORKING_DIRECTORY,
       options.outputFolder,
-      relativePath
+      relativePath,
     );
   }
 

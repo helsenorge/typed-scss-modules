@@ -5,7 +5,7 @@ describeAllImplementations((implementation) => {
   describe("fileToClassNames", () => {
     it("converts a file path to an array of class names (default camel cased)", async () => {
       const result = await fileToClassNames(
-        `${__dirname}/../dummy-styles/complex.scss`
+        `${__dirname}/../dummy-styles/complex.scss`,
       );
 
       expect(result).toEqual([
@@ -24,7 +24,7 @@ describeAllImplementations((implementation) => {
           {
             nameFormat: ["kebab"],
             implementation,
-          }
+          },
         );
 
         expect(result).toEqual([
@@ -42,7 +42,7 @@ describeAllImplementations((implementation) => {
           {
             nameFormat: ["param"],
             implementation,
-          }
+          },
         );
 
         expect(result).toEqual([
@@ -60,7 +60,7 @@ describeAllImplementations((implementation) => {
           {
             nameFormat: ["snake"],
             implementation,
-          }
+          },
         );
 
         expect(result).toEqual([
@@ -78,7 +78,7 @@ describeAllImplementations((implementation) => {
           {
             nameFormat: ["dashes"],
             implementation,
-          }
+          },
         );
 
         expect(result).toEqual(["App", "appHeader", "Logo"]);
@@ -90,7 +90,7 @@ describeAllImplementations((implementation) => {
           {
             nameFormat: ["none"],
             implementation,
-          }
+          },
         );
 
         expect(result).toEqual(["App", "App-Header", "Logo"]);
@@ -102,7 +102,7 @@ describeAllImplementations((implementation) => {
           {
             nameFormat: ["all"],
             implementation,
-          }
+          },
         );
 
         expect(result).toEqual([
@@ -130,7 +130,7 @@ describeAllImplementations((implementation) => {
           {
             nameFormat: ["kebab", "snake"],
             implementation,
-          }
+          },
         );
 
         expect(result).toEqual([
@@ -153,7 +153,7 @@ describeAllImplementations((implementation) => {
           {
             nameFormat: "snake",
             implementation,
-          }
+          },
         );
 
         expect(result).toEqual([
@@ -176,7 +176,7 @@ describeAllImplementations((implementation) => {
               "~another": "style",
             },
             implementation,
-          }
+          },
         );
 
         expect(result).toEqual([
@@ -203,7 +203,7 @@ describeAllImplementations((implementation) => {
               "~": "nested-styles/",
             },
             implementation,
-          }
+          },
         );
 
         expect(result).toEqual([
@@ -224,7 +224,7 @@ describeAllImplementations((implementation) => {
           `${__dirname}/../dummy-styles/composes.scss`,
           {
             implementation,
-          }
+          },
         );
 
         expect(result).toEqual(["composedClass"]);
@@ -238,7 +238,7 @@ describeAllImplementations((implementation) => {
           {
             implementation,
             additionalData: "$global-red: red;",
-          }
+          },
         );
 
         expect(result).toEqual(["globalStyle"]);
