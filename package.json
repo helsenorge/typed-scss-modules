@@ -1,6 +1,6 @@
 {
   "name": "@helsenorge/typed-scss-modules",
-  "version": "9.0.5",
+  "version": "9.0.6",
   "description": "TypeScript type definition generator for SCSS CSS Modules",
   "main": "dist/lib/index.js",
   "types": "dist/lib/index.d.ts",
