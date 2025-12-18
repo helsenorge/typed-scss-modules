@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-ThirdParty-typed-scss-modules"
+    "url": "https://github.com/helsenorge/typed-scss-modules"
   },
   "files": [
     "dist/lib"
