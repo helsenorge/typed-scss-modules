@@ -1,5 +1,14 @@
 import fs from "fs";
 import path from "path";
+import {
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+  type MockInstance,
+} from "vitest";
 import { alerts } from "../lib/core";
 import { main } from "../lib/main";
 import { slash } from "../lib/slash";
@@ -7,19 +16,21 @@ import { describeAllImplementations } from "./helpers";
 
 describeAllImplementations(() => {
   describe("main", () => {
-    let writeFileSyncSpy: jest.SpyInstance;
+    let writeFileSyncSpy: MockInstance<typeof fs.writeFileSync>;
 
     beforeEach(() => {
       // Only mock the writes, so the example files can still be read.
-      writeFileSyncSpy = jest.spyOn(fs, "writeFileSync").mockImplementation();
+      writeFileSyncSpy = vi
+        .spyOn(fs, "writeFileSync")
+        .mockImplementation(() => {});
 
       // Avoid creating directories while running tests.
-      jest.spyOn(fs, "mkdirSync").mockImplementation();
+      vi.spyOn(fs, "mkdirSync").mockImplementation(() => {});
 
       // Avoid console logs showing up.
-      jest.spyOn(console, "log").mockImplementation();
+      vi.spyOn(console, "log").mockImplementation(() => {});
 
-      jest.spyOn(alerts, "error").mockImplementation();
+      vi.spyOn(alerts, "error").mockImplementation(() => {});
     });
 
     afterEach(() => {
@@ -115,7 +126,7 @@ describeAllImplementations(() => {
     it("reads options from the configuration file", async () => {
       const pattern = `${__dirname}/dummy-styles`;
 
-      jest.spyOn(process, "cwd").mockReturnValue(path.resolve(pattern));
+      vi.spyOn(process, "cwd").mockReturnValue(path.resolve(pattern));
 
       await main(pattern, {
         additionalData: "$global-red: red;",
@@ -134,8 +145,8 @@ describeAllImplementations(() => {
 
       // Transform the calls into a more readable format for the snapshot.
       const contents = writeFileSyncSpy.mock.calls
-        .map(([fullFilePath, contents]: [string, string]) => ({
-          path: path.relative(__dirname, fullFilePath),
+        .map(([fullFilePath, contents]) => ({
+          path: path.relative(__dirname, fullFilePath as string),
           contents,
         }))
         // Sort to avoid flakey snapshot tests if call order changes.
@@ -165,8 +176,8 @@ describeAllImplementations(() => {
 
       // Transform the calls into a more readable format for the snapshot.
       const contents = writeFileSyncSpy.mock.calls
-        .map(([fullFilePath, contents]: [string, string]) => ({
-          path: path.relative(__dirname, fullFilePath),
+        .map(([fullFilePath, contents]) => ({
+          path: path.relative(__dirname, fullFilePath as string),
           contents,
         }))
         // Sort to avoid flakey snapshot tests if call order changes.

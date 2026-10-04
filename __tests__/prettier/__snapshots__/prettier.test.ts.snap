@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`attemptPrettier should match snapshot 1`] = `
+exports[`attemptPrettier > should match snapshot 1`] = `
 "export type Styles = {
   nestedAnother: string;
   nestedClass: string;

@@ -1,6 +1,6 @@
 import type { format, resolveConfig } from "prettier";
 import { alerts } from "../core";
-import { canResolvePrettier } from "./can-resolve";
+import { canResolvePrettier, loadPrettier } from "./can-resolve";
 
 interface Prettier {
   format: typeof format;
@@ -28,8 +28,7 @@ export const attemptPrettier = async (file: string, input: string) => {
     return input;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-require-imports
-  const prettier = require("prettier");
+  const prettier = loadPrettier();
   if (!isPrettier(prettier)) {
     // doesn't look like prettier
     return input;

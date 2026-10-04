@@ -1,3 +1,4 @@
+import { describe } from "vitest";
 import { Implementations, IMPLEMENTATIONS } from "../../lib/implementations";
 
 export const describeAllImplementations = (

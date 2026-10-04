@@ -1,4 +1,5 @@
 import { execSync } from "child_process";
+import { describe, expect, it } from "vitest";
 
 describe("cli", () => {
   it("should run when no files are found", () => {

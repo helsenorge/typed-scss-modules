@@ -1,4 +1,5 @@
 import path from "path";
+import { describe, expect, it, vi } from "vitest";
 import { DEFAULT_OPTIONS, loadConfig, mergeOptions } from "../lib/load";
 
 const CONFIG_CASES = [
@@ -16,9 +17,9 @@ describe("#loadConfig", () => {
     // we can direct it to any path we want. This makes it easier to test
     // various kinds of configuration files as if they were in the root.
     (configCaseName) => {
-      jest
-        .spyOn(process, "cwd")
-        .mockReturnValue(path.resolve(`__tests__/configs/${configCaseName}`));
+      vi.spyOn(process, "cwd").mockReturnValue(
+        path.resolve(`__tests__/configs/${configCaseName}`),
+      );
 
       const config = loadConfig();
 
@@ -72,7 +73,7 @@ describe("#mergeOptions", () => {
   });
 
   it("should allow overriding all default options via the config options", () => {
-    const importer = jest.fn();
+    const importer = vi.fn();
 
     expect(
       mergeOptions(
@@ -115,7 +116,7 @@ describe("#mergeOptions", () => {
   });
 
   it("should give precedence to CLI options and still merge config-only options", () => {
-    const importer = jest.fn();
+    const importer = vi.fn();
 
     expect(
       mergeOptions(
@@ -172,7 +173,7 @@ describe("#mergeOptions", () => {
   });
 
   it("should give ignore undefined CLI options", () => {
-    const importer = jest.fn();
+    const importer = vi.fn();
 
     expect(
       mergeOptions(

@@ -1,10 +1,19 @@
+import {
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+  type MockInstance,
+} from "vitest";
 import { alerts, setAlertsLogLevel } from "../../lib/core";
 
 describe("alerts", () => {
-  let logSpy: jest.SpyInstance;
+  let logSpy: MockInstance;
 
   beforeEach(() => {
-    logSpy = jest.spyOn(console, "log").mockImplementation();
+    logSpy = vi.spyOn(console, "log").mockImplementation(() => {});
   });
 
   afterEach(() => {

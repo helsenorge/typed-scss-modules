@@ -1,5 +1,14 @@
 import fs from "fs";
 import path from "path";
+import {
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+  type MockInstance,
+} from "vitest";
 import { alerts } from "../../lib/core/alerts";
 import { removeSCSSTypeDefinitionFile } from "../../lib/core/remove-file";
 import { DEFAULT_OPTIONS } from "../../lib/load";
@@ -16,12 +25,12 @@ describe("removeFile", () => {
     "__generated__/__tests__/removable.scss.d.ts",
   );
 
-  let existsSpy: jest.SpyInstance;
-  let unlinkSpy: jest.SpyInstance;
-  let alertsSpy: jest.SpyInstance;
+  let existsSpy: MockInstance<typeof fs.existsSync>;
+  let unlinkSpy: MockInstance;
+  let alertsSpy: MockInstance;
 
   beforeEach(() => {
-    existsSpy = jest
+    existsSpy = vi
       .spyOn(fs, "existsSync")
       .mockImplementation(
         (path) =>
@@ -30,13 +39,13 @@ describe("removeFile", () => {
           path === outputFolderExistingTypes,
       );
 
-    unlinkSpy = jest.spyOn(fs, "unlinkSync").mockImplementation();
+    unlinkSpy = vi.spyOn(fs, "unlinkSync").mockImplementation(() => {});
 
-    alertsSpy = jest.spyOn(alerts, "success").mockImplementation();
+    alertsSpy = vi.spyOn(alerts, "success").mockImplementation(() => {});
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it("does nothing if types file doesn't exist", () => {

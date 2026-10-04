@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { ConfigOptions } from "../../lib/core";
 import { listFilesAndPerformSanityChecks } from "../../lib/core/list-files-and-perform-sanity-checks";
 
@@ -19,7 +20,7 @@ const options: ConfigOptions = {
 
 describe("listAllFilesAndPerformSanityCheck", () => {
   beforeEach(() => {
-    console.log = jest.fn();
+    console.log = vi.fn();
   });
 
   it("prints a warning if the pattern matches 0 files", () => {

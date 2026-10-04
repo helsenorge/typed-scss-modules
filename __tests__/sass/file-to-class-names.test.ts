@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import { fileToClassNames } from "../../lib/sass";
 import { describeAllImplementations } from "../helpers";
 

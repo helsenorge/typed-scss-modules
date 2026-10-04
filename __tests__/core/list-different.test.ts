@@ -1,13 +1,24 @@
+import {
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+  type MockInstance,
+} from "vitest";
 import { listDifferent } from "../../lib/core";
 import { describeAllImplementations } from "../helpers";
 
 describeAllImplementations(() => {
   describe("listDifferent", () => {
-    let exit: jest.SpyInstance;
+    let exit: MockInstance;
 
     beforeEach(() => {
-      console.log = jest.fn();
-      exit = jest.spyOn(process, "exit").mockImplementation();
+      console.log = vi.fn();
+      exit = vi
+        .spyOn(process, "exit")
+        .mockImplementation(() => undefined as never);
     });
 
     afterEach(() => {

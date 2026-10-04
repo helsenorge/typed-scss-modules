@@ -1,22 +1,33 @@
 import fs from "fs";
+import {
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+  type MockInstance,
+} from "vitest";
 import { alerts } from "../../lib/core";
 import { main } from "../../lib/main";
 import { slash } from "../../lib/slash";
 
 describe("dart-sass", () => {
-  let writeFileSyncSpy: jest.SpyInstance;
+  let writeFileSyncSpy: MockInstance<typeof fs.writeFileSync>;
 
   beforeEach(() => {
     // Only mock the writes, so the example files can still be read.
-    writeFileSyncSpy = jest.spyOn(fs, "writeFileSync").mockImplementation();
+    writeFileSyncSpy = vi
+      .spyOn(fs, "writeFileSync")
+      .mockImplementation(() => {});
 
     // Avoid creating directories while running tests.
-    jest.spyOn(fs, "mkdirSync").mockImplementation();
+    vi.spyOn(fs, "mkdirSync").mockImplementation(() => {});
 
     // Avoid console logs showing up.
-    jest.spyOn(console, "log").mockImplementation();
+    vi.spyOn(console, "log").mockImplementation(() => {});
 
-    jest.spyOn(alerts, "error").mockImplementation();
+    vi.spyOn(alerts, "error").mockImplementation(() => {});
   });
 
   afterEach(() => {
