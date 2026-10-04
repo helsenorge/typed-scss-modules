@@ -1,12 +1,7 @@
-import {
-  camelCase,
-  camelCaseTransformMerge,
-  paramCase,
-  snakeCase,
-} from "change-case";
+import { camelCase, kebabCase, Options, snakeCase } from "change-case";
 import fs from "fs";
 import { getImplementation } from "../implementations";
-import { Aliases, SASSImporterOptions, customImporters } from "./importer";
+import { Aliases, customImporters, SASSImporterOptions } from "./importer";
 import { sourceToClassNames } from "./source-to-class-names";
 
 export { Aliases };
@@ -15,20 +10,34 @@ interface Transformer {
   (className: ClassName): string;
 }
 
+/**
+ * Word splitting compatible with change-case v4, which only treats ASCII letters
+ * and digits as word characters. Keeps generated class names unchanged.
+ */
+const caseOptions: Options = {
+  locale: false,
+  split: (value: string) =>
+    value
+      .replace(/([a-z0-9])([A-Z])/g, "$1\0$2")
+      .replace(/([A-Z])([A-Z][a-z])/g, "$1\0$2")
+      .split(/[^A-Za-z0-9]+/)
+      .filter(Boolean),
+};
+
 const transformersMap = {
   camel: (className: ClassName) =>
-    camelCase(className, { transform: camelCaseTransformMerge }),
+    camelCase(className, { ...caseOptions, mergeAmbiguousCharacters: true }),
   dashes: (className: ClassName) =>
-    /-/.test(className) ? camelCase(className) : className,
+    /-/.test(className) ? camelCase(className, caseOptions) : className,
   kebab: (className: ClassName) => transformersMap.param(className),
   none: (className: ClassName) => className,
-  param: (className: ClassName) => paramCase(className),
-  snake: (className: ClassName) => snakeCase(className),
+  param: (className: ClassName) => kebabCase(className, caseOptions),
+  snake: (className: ClassName) => snakeCase(className, caseOptions),
 } as const;
 
 type NameFormatWithTransformer = keyof typeof transformersMap;
 const NAME_FORMATS_WITH_TRANSFORMER = Object.keys(
-  transformersMap
+  transformersMap,
 ) as NameFormatWithTransformer[];
 
 export const NAME_FORMATS = [...NAME_FORMATS_WITH_TRANSFORMER, "all"] as const;
@@ -50,7 +59,7 @@ export const fileToClassNames = async (
     aliases,
     aliasPrefixes,
     importer,
-  }: SASSOptions = {} as SASSOptions
+  }: SASSOptions = {},
 ) => {
   const { renderSync } = getImplementation();
 

@@ -11,7 +11,9 @@ describe("attemptPrettier", () => {
   it("should locate and apply prettier.format", async () => {
     const output = await attemptPrettier(file, input);
 
-    expect(prettier.format(input, { parser: "typescript" })).toMatch(output);
+    expect(await prettier.format(input, { parser: "typescript" })).toMatch(
+      output,
+    );
   });
 
   it("should match snapshot", async () => {

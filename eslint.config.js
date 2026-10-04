@@ -1,38 +1,20 @@
 const { defineConfig, globalIgnores } = require("eslint/config");
-
-const tsParser = require("@typescript-eslint/parser");
-const typescriptEslint = require("@typescript-eslint/eslint-plugin");
+const js = require("@eslint/js");
+const tseslint = require("typescript-eslint");
 const promise = require("eslint-plugin-promise");
 const jest = require("eslint-plugin-jest");
-const jestFormatting = require("eslint-plugin-jest-formatting");
-const js = require("@eslint/js");
-
-const { FlatCompat } = require("@eslint/eslintrc");
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-  allConfig: js.configs.all,
-});
 
 module.exports = defineConfig([
+  globalIgnores(["dist/**/*", "**/*.snap", "**/*.config.js"]),
   {
-    extends: compat.extends(
-      "eslint:recommended",
-      "plugin:@typescript-eslint/recommended",
-      "plugin:jest-formatting/strict",
-      "plugin:jest/recommended"
-    ),
-
-    languageOptions: {
-      parser: tsParser,
-    },
+    extends: [
+      js.configs.recommended,
+      tseslint.configs.recommended,
+      jest.configs["flat/recommended"],
+    ],
 
     plugins: {
-      "@typescript-eslint": typescriptEslint,
       promise,
-      jest,
-      "jest-formatting": jestFormatting,
     },
 
     rules: {
@@ -44,19 +26,25 @@ module.exports = defineConfig([
           fn: "it",
         },
       ],
+
+      "jest/padding-around-all": "error",
     },
   },
-  globalIgnores(["dist/**/*", "**/*.snap", "**/*.config.js"]),
   {
     files: ["**/*.ts", "**/*.tsx"],
-    extends: compat.extends(
-      "plugin:@typescript-eslint/recommended-requiring-type-checking"
-    ),
+    extends: [tseslint.configs.recommendedTypeCheckedOnly],
 
     languageOptions: {
       parserOptions: {
         project: ["./tsconfig.json"],
+        tsconfigRootDir: __dirname,
       },
+    },
+  },
+  {
+    files: ["__tests__/helpers/**"],
+    rules: {
+      "jest/no-export": "off",
     },
   },
 ]);

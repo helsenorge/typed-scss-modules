@@ -1,4 +1,4 @@
-import { format, resolveConfig } from "prettier";
+import type { format, resolveConfig } from "prettier";
 import { alerts } from "../core";
 import { canResolvePrettier } from "./can-resolve";
 

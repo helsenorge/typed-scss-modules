@@ -10,13 +10,13 @@ import { ConfigOptions } from "./types";
 
 export const listDifferent = async (
   pattern: string,
-  options: ConfigOptions
+  options: ConfigOptions,
 ): Promise<void> => {
   const files = listFilesAndPerformSanityChecks(pattern, options);
 
   // Wait for all the files to be checked.
   const validChecks = await Promise.all(
-    files.map((file) => checkFile(file, options))
+    files.map((file) => checkFile(file, options)),
   );
   if (validChecks.includes(false)) {
     process.exit(1);
@@ -25,7 +25,7 @@ export const listDifferent = async (
 
 export const checkFile = async (
   file: string,
-  options: ConfigOptions
+  options: ConfigOptions,
 ): Promise<boolean> => {
   try {
     const classNames = await fileToClassNames(file, options);
@@ -43,7 +43,7 @@ export const checkFile = async (
     const path = getTypeDefinitionPath(file, options);
     if (!fs.existsSync(path)) {
       alerts.error(
-        `[INVALID TYPES] Type file needs to be generated for ${file} `
+        `[INVALID TYPES] Type file needs to be generated for ${file} `,
       );
       return false;
     }
@@ -57,7 +57,7 @@ export const checkFile = async (
     return true;
   } catch (error) {
     alerts.error(
-      `An error occurred checking ${file}:\n${JSON.stringify(error)}`
+      `An error occurred checking ${file}:\n${JSON.stringify(error)}`,
     );
     return false;
   }

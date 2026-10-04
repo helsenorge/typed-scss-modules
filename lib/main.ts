@@ -1,6 +1,5 @@
 import fs from "fs";
 import path from "path";
-import slash from "slash";
 import {
   CLIOptions,
   generate,
@@ -9,10 +8,11 @@ import {
   watch,
 } from "./core";
 import { loadConfig, mergeOptions } from "./load";
+import { slash } from "./slash";
 
 export const main = async (
   pattern: string,
-  cliOptions: Partial<CLIOptions>
+  cliOptions: Partial<CLIOptions>,
 ) => {
   const configOptions = loadConfig();
   const options = mergeOptions(cliOptions, configOptions);

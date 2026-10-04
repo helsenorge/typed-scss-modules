@@ -7,6 +7,6 @@ export default {
     "(.*).d.ts",
   ],
   transformIgnorePatterns: [
-    "[/\\\\]node_modules[/\\\\](?!bundle-require).+\\.js$",
+    "[/\\\\]node_modules[/\\\\](?!(chokidar|readdirp|change-case)[/\\\\]).+\\.js$",
   ],
 };

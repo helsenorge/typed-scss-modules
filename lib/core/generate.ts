@@ -11,7 +11,7 @@ import { writeFile } from "./write-file";
  */
 export const generate = async (
   pattern: string,
-  options: ConfigOptions
+  options: ConfigOptions,
 ): Promise<void> => {
   const files = listFilesAndPerformSanityChecks(pattern, options);
 
@@ -22,7 +22,7 @@ export const generate = async (
   alerts.success(
     `Found ${files.length} file${
       files.length === 1 ? `` : `s`
-    }. Generating type definitions...`
+    }. Generating type definitions...`,
   );
 
   // Wait for all the type definitions to be written.
