@@ -1,6 +1,6 @@
 import type { format, resolveConfig } from "prettier";
-import { alerts } from "../core";
-import { canResolvePrettier, loadPrettier } from "./can-resolve";
+import { alerts } from "../core/index.js";
+import { canResolvePrettier, loadPrettier } from "./can-resolve.js";
 
 interface Prettier {
   format: typeof format;
@@ -28,7 +28,7 @@ export const attemptPrettier = async (file: string, input: string) => {
     return input;
   }
 
-  const prettier = loadPrettier();
+  const prettier = await loadPrettier();
   if (!isPrettier(prettier)) {
     // doesn't look like prettier
     return input;

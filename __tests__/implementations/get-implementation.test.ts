@@ -1,12 +1,9 @@
-import { createRequire } from "module";
+import * as sass from "sass";
 import { describe, expect, it } from "vitest";
-import { getImplementation } from "../../lib/implementations";
+import { getImplementation } from "../../lib/implementations/index.js";
 
 describe("getImplementation", () => {
   it("returns the correct implementation when explicitly passed", () => {
-    // lib loads sass via require (CJS build), so compare against the same module.
-    const sass: unknown = createRequire(__filename)("sass");
-
     expect(getImplementation()).toBe(sass);
   });
 });

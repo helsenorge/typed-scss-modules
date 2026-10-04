@@ -9,13 +9,17 @@ import {
   vi,
   type MockInstance,
 } from "vitest";
-import { alerts } from "../../lib/core/alerts";
-import { removeSCSSTypeDefinitionFile } from "../../lib/core/remove-file";
-import { DEFAULT_OPTIONS } from "../../lib/load";
+import { alerts } from "../../lib/core/alerts.js";
+import { removeSCSSTypeDefinitionFile } from "../../lib/core/remove-file.js";
+import { DEFAULT_OPTIONS } from "../../lib/load.js";
 
 describe("removeFile", () => {
-  const originalTestFile = path.resolve(__dirname, "..", "removable.scss");
-  const existingFile = path.resolve(__dirname, "..", "style.scss");
+  const originalTestFile = path.resolve(
+    import.meta.dirname,
+    "..",
+    "removable.scss",
+  );
+  const existingFile = path.resolve(import.meta.dirname, "..", "style.scss");
   const existingTypes = path.join(
     process.cwd(),
     "__tests__/removable.scss.d.ts",
@@ -49,7 +53,11 @@ describe("removeFile", () => {
   });
 
   it("does nothing if types file doesn't exist", () => {
-    const nonExistingFile = path.resolve(__dirname, "..", "deleted.scss");
+    const nonExistingFile = path.resolve(
+      import.meta.dirname,
+      "..",
+      "deleted.scss",
+    );
     const nonExistingTypes = path.join(
       process.cwd(),
       "__tests__/deleted.scss.d.ts",

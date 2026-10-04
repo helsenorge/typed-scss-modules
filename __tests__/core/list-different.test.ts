@@ -7,8 +7,8 @@ import {
   vi,
   type MockInstance,
 } from "vitest";
-import { listDifferent } from "../../lib/core";
-import { describeAllImplementations } from "../helpers";
+import { listDifferent } from "../../lib/core/index.js";
+import { describeAllImplementations } from "../helpers/index.js";
 
 describeAllImplementations(() => {
   describe("listDifferent", () => {
@@ -26,7 +26,7 @@ describeAllImplementations(() => {
     });
 
     it("logs invalid type definitions and exits with 1", async () => {
-      const pattern = `${__dirname}/../**/*.scss`;
+      const pattern = `${import.meta.dirname}/../**/*.scss`;
 
       await listDifferent(pattern, {
         banner: "",
@@ -62,7 +62,7 @@ describeAllImplementations(() => {
     });
 
     it("logs nothing and does not exit when formatted using Prettier", async () => {
-      const pattern = `${__dirname}/list-different/formatted.scss`;
+      const pattern = `${import.meta.dirname}/list-different/formatted.scss`;
 
       await listDifferent(pattern, {
         banner: "",
@@ -90,7 +90,7 @@ describeAllImplementations(() => {
     });
 
     it("logs nothing and does not exit if all files are valid", async () => {
-      const pattern = `${__dirname}/../dummy-styles/**/style.scss`;
+      const pattern = `${import.meta.dirname}/../dummy-styles/**/style.scss`;
 
       await listDifferent(pattern, {
         banner: "",
@@ -114,7 +114,7 @@ describeAllImplementations(() => {
     });
 
     it("logs not generated type file and exits with 1", async () => {
-      const pattern = `${__dirname}/list-different/no-generated.scss`;
+      const pattern = `${import.meta.dirname}/list-different/no-generated.scss`;
 
       await listDifferent(pattern, {
         banner: "",
@@ -145,7 +145,7 @@ describeAllImplementations(() => {
     });
 
     it("ignores ignored files", async () => {
-      const pattern = `${__dirname}/list-different/no-generated.scss`;
+      const pattern = `${import.meta.dirname}/list-different/no-generated.scss`;
 
       await listDifferent(pattern, {
         banner: "",

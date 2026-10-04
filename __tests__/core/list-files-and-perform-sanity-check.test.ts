@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { ConfigOptions } from "../../lib/core";
-import { listFilesAndPerformSanityChecks } from "../../lib/core/list-files-and-perform-sanity-checks";
+import type { ConfigOptions } from "../../lib/core/index.js";
+import { listFilesAndPerformSanityChecks } from "../../lib/core/list-files-and-perform-sanity-checks.js";
 
 const options: ConfigOptions = {
   banner: "",
@@ -24,7 +24,7 @@ describe("listAllFilesAndPerformSanityCheck", () => {
   });
 
   it("prints a warning if the pattern matches 0 files", () => {
-    const pattern = `${__dirname}/list-different/test.txt`;
+    const pattern = `${import.meta.dirname}/list-different/test.txt`;
 
     listFilesAndPerformSanityChecks(pattern, options);
 
@@ -34,7 +34,7 @@ describe("listAllFilesAndPerformSanityCheck", () => {
   });
 
   it("prints a warning if the pattern matches 1 file", () => {
-    const pattern = `${__dirname}/list-different/formatted.scss`;
+    const pattern = `${import.meta.dirname}/list-different/formatted.scss`;
 
     listFilesAndPerformSanityChecks(pattern, options);
 

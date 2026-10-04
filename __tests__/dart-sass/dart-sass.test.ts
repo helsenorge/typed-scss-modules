@@ -8,9 +8,9 @@ import {
   vi,
   type MockInstance,
 } from "vitest";
-import { alerts } from "../../lib/core";
-import { main } from "../../lib/main";
-import { slash } from "../../lib/slash";
+import { alerts } from "../../lib/core/index.js";
+import { main } from "../../lib/main.js";
+import { slash } from "../../lib/slash.js";
 
 describe("dart-sass", () => {
   let writeFileSyncSpy: MockInstance<typeof fs.writeFileSync>;
@@ -35,7 +35,7 @@ describe("dart-sass", () => {
   });
 
   it("@use support", async () => {
-    const pattern = `${__dirname}`;
+    const pattern = `${import.meta.dirname}`;
 
     await main(pattern, {
       banner: "",
@@ -62,7 +62,7 @@ describe("dart-sass", () => {
     expect(alerts.error).not.toHaveBeenCalled();
     expect(fs.writeFileSync).toHaveBeenCalledTimes(1);
 
-    const expectedDirname = slash(__dirname);
+    const expectedDirname = slash(import.meta.dirname);
 
     expect(fs.writeFileSync).toHaveBeenCalledWith(
       `${expectedDirname}/use.scss.d.ts`,

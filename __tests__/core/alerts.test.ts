@@ -7,7 +7,7 @@ import {
   vi,
   type MockInstance,
 } from "vitest";
-import { alerts, setAlertsLogLevel } from "../../lib/core";
+import { alerts, setAlertsLogLevel } from "../../lib/core/index.js";
 
 describe("alerts", () => {
   let logSpy: MockInstance;

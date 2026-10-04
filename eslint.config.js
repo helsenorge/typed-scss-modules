@@ -1,10 +1,15 @@
-const { defineConfig, globalIgnores } = require("eslint/config");
-const js = require("@eslint/js");
-const tseslint = require("typescript-eslint");
-const promise = require("eslint-plugin-promise");
+import js from "@eslint/js";
+import promise from "eslint-plugin-promise";
+import { defineConfig, globalIgnores } from "eslint/config";
+import tseslint from "typescript-eslint";
 
-module.exports = defineConfig([
-  globalIgnores(["dist/**/*", "**/*.snap", "**/*.config.js"]),
+export default defineConfig([
+  globalIgnores([
+    "dist/**/*",
+    "**/*.snap",
+    "**/*.config.js",
+    "**/*.config.cjs",
+  ]),
   {
     extends: [js.configs.recommended, tseslint.configs.recommended],
 
@@ -22,8 +27,8 @@ module.exports = defineConfig([
 
     languageOptions: {
       parserOptions: {
-        project: ["./tsconfig.json"],
-        tsconfigRootDir: __dirname,
+        project: ["./tsconfig.json", "./examples/tsconfig.json"],
+        tsconfigRootDir: import.meta.dirname,
       },
     },
   },

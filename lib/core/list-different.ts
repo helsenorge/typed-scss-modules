@@ -1,12 +1,12 @@
 import fs from "fs";
-import { fileToClassNames } from "../sass";
+import { fileToClassNames } from "../sass/index.js";
 import {
   classNamesToTypeDefinitions,
   getTypeDefinitionPath,
-} from "../typescript";
-import { alerts } from "./alerts";
-import { listFilesAndPerformSanityChecks } from "./list-files-and-perform-sanity-checks";
-import { ConfigOptions } from "./types";
+} from "../typescript/index.js";
+import { alerts } from "./alerts.js";
+import { listFilesAndPerformSanityChecks } from "./list-files-and-perform-sanity-checks.js";
+import type { ConfigOptions } from "./types.js";
 
 export const listDifferent = async (
   pattern: string,

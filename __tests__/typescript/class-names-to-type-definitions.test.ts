@@ -1,12 +1,12 @@
 import os from "os";
 import { join } from "path";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { classNamesToTypeDefinitions } from "../../lib/typescript";
+import { classNamesToTypeDefinitions } from "../../lib/typescript/index.js";
 
-vi.mock("../../lib/prettier/can-resolve", () => ({
+vi.mock("../../lib/prettier/can-resolve.js", () => ({
   canResolvePrettier: () => false,
 }));
-const file = join(__dirname, "test.d.ts");
+const file = join(import.meta.dirname, "test.d.ts");
 
 describe("classNamesToTypeDefinitions (without Prettier)", () => {
   beforeEach(() => {

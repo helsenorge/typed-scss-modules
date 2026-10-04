@@ -1,5 +1,8 @@
 import { describe } from "vitest";
-import { Implementations, IMPLEMENTATIONS } from "../../lib/implementations";
+import {
+  type Implementations,
+  IMPLEMENTATIONS,
+} from "../../lib/implementations/index.js";
 
 export const describeAllImplementations = (
   fn: (implementation: Implementations) => void,

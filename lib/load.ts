@@ -1,5 +1,5 @@
-import { CLIOptions, ConfigOptions } from "./core";
-import { nameFormatDefault } from "./sass";
+import type { CLIOptions, ConfigOptions } from "./core/index.js";
+import { nameFormatDefault } from "./sass/index.js";
 import {
   bannerTypeDefault,
   exportTypeDefault,
@@ -7,15 +7,10 @@ import {
   exportTypeNameDefault,
   logLevelDefault,
   quoteTypeDefault,
-} from "./typescript";
+} from "./typescript/index.js";
 
 /**
- * Load a custom config file in the project root directory with any options for this package.
- *
- * This supports config files in the following formats and order:
- *  - Named `config` export: `export const config = {}`
- *  - Default export: `export default {}`
- *  - `module.exports = {}`
+ * Config file support has been removed; always returns an empty config.
  */
 export const loadConfig = (): Record<string, never> | ConfigOptions => {
   // config file support has been removed, in order to be able remove dependencies

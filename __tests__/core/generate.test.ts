@@ -1,7 +1,7 @@
 import fs from "fs";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { generate } from "../../lib/core";
-import { describeAllImplementations } from "../helpers";
+import { generate } from "../../lib/core/index.js";
+import { describeAllImplementations } from "../helpers/index.js";
 
 describeAllImplementations(() => {
   describe("generate", () => {
@@ -12,7 +12,7 @@ describeAllImplementations(() => {
     });
 
     it("generates types for all files matching the pattern", async () => {
-      const pattern = `${__dirname}/../dummy-styles/**/*.scss`;
+      const pattern = `${import.meta.dirname}/../dummy-styles/**/*.scss`;
 
       await generate(pattern, {
         banner: "",

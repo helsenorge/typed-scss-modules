@@ -1,4 +1,4 @@
-import fs, { PathOrFileDescriptor } from "fs";
+import fs, { type PathOrFileDescriptor } from "fs";
 import path from "path";
 import {
   afterEach,
@@ -9,8 +9,8 @@ import {
   vi,
   type Mock,
 } from "vitest";
-import { writeFile } from "../../lib/core";
-import { describeAllImplementations } from "../helpers";
+import { writeFile } from "../../lib/core/index.js";
+import { describeAllImplementations } from "../helpers/index.js";
 
 describeAllImplementations(() => {
   describe("writeFile", () => {
@@ -28,7 +28,11 @@ describeAllImplementations(() => {
     });
 
     it("writes the corresponding type definitions for a file and logs", async () => {
-      const testFile = path.resolve(__dirname, "..", "dummy-styles/style.scss");
+      const testFile = path.resolve(
+        import.meta.dirname,
+        "..",
+        "dummy-styles/style.scss",
+      );
 
       await writeFile(testFile, {
         banner: "",
@@ -61,7 +65,11 @@ describeAllImplementations(() => {
     });
 
     it("writes the corresponding type definitions for a file and logs when allowArbitraryExtensions is set", async () => {
-      const testFile = path.resolve(__dirname, "..", "dummy-styles/style.scss");
+      const testFile = path.resolve(
+        import.meta.dirname,
+        "..",
+        "dummy-styles/style.scss",
+      );
 
       await writeFile(testFile, {
         banner: "",
@@ -94,7 +102,11 @@ describeAllImplementations(() => {
     });
 
     it("skips files with no classes", async () => {
-      const testFile = path.resolve(__dirname, "..", "dummy-styles/empty.scss");
+      const testFile = path.resolve(
+        import.meta.dirname,
+        "..",
+        "dummy-styles/empty.scss",
+      );
 
       await writeFile(testFile, {
         banner: "",
@@ -119,7 +131,11 @@ describeAllImplementations(() => {
     });
 
     describe("when a file already exists with type definitions", () => {
-      const testFile = path.resolve(__dirname, "..", "dummy-styles/empty.scss");
+      const testFile = path.resolve(
+        import.meta.dirname,
+        "..",
+        "dummy-styles/empty.scss",
+      );
       const existingTypes = path.join(
         process.cwd(),
         "__tests__/dummy-styles/empty.scss.d.ts",
@@ -163,7 +179,7 @@ describeAllImplementations(() => {
     describe("when outputFolder is passed", () => {
       it("should write to the correct path", async () => {
         const testFile = path.resolve(
-          __dirname,
+          import.meta.dirname,
           "..",
           "dummy-styles/style.scss",
         );
@@ -201,7 +217,11 @@ describeAllImplementations(() => {
 
     describe("when --updateStaleOnly is passed", () => {
       const originalReadFileSync = fs.readFileSync;
-      const testFile = path.resolve(__dirname, "..", "dummy-styles/style.scss");
+      const testFile = path.resolve(
+        import.meta.dirname,
+        "..",
+        "dummy-styles/style.scss",
+      );
       const expectedPath = path.join(
         process.cwd(),
         "__tests__/dummy-styles/style.scss.d.ts",

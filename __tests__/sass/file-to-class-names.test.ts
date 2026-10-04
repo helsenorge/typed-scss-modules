@@ -1,12 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { fileToClassNames } from "../../lib/sass";
-import { describeAllImplementations } from "../helpers";
+import { fileToClassNames } from "../../lib/sass/index.js";
+import { describeAllImplementations } from "../helpers/index.js";
 
 describeAllImplementations(() => {
   describe("fileToClassNames", () => {
     it("converts a file path to an array of class names (default camel cased)", async () => {
       const result = await fileToClassNames(
-        `${__dirname}/../dummy-styles/complex.scss`,
+        `${import.meta.dirname}/../dummy-styles/complex.scss`,
       );
 
       expect(result).toEqual([
@@ -21,7 +21,7 @@ describeAllImplementations(() => {
     describe("nameFormat", () => {
       it("converts a file path to an array of class names with kebab as the name format", async () => {
         const result = await fileToClassNames(
-          `${__dirname}/../dummy-styles/complex.scss`,
+          `${import.meta.dirname}/../dummy-styles/complex.scss`,
           {
             nameFormat: ["kebab"],
           },
@@ -38,7 +38,7 @@ describeAllImplementations(() => {
 
       it("converts a file path to an array of class names with param as the name format", async () => {
         const result = await fileToClassNames(
-          `${__dirname}/../dummy-styles/complex.scss`,
+          `${import.meta.dirname}/../dummy-styles/complex.scss`,
           {
             nameFormat: ["param"],
           },
@@ -55,7 +55,7 @@ describeAllImplementations(() => {
 
       it("converts a file path to an array of class names with snake as the name format", async () => {
         const result = await fileToClassNames(
-          `${__dirname}/../dummy-styles/complex.scss`,
+          `${import.meta.dirname}/../dummy-styles/complex.scss`,
           {
             nameFormat: ["snake"],
           },
@@ -72,7 +72,7 @@ describeAllImplementations(() => {
 
       it("converts a file path to an array of class names where only classes with dashes in the names are altered", async () => {
         const result = await fileToClassNames(
-          `${__dirname}/../dummy-styles/dashes.scss`,
+          `${import.meta.dirname}/../dummy-styles/dashes.scss`,
           {
             nameFormat: ["dashes"],
           },
@@ -83,7 +83,7 @@ describeAllImplementations(() => {
 
       it("does not change class names when nameFormat is set to none", async () => {
         const result = await fileToClassNames(
-          `${__dirname}/../dummy-styles/dashes.scss`,
+          `${import.meta.dirname}/../dummy-styles/dashes.scss`,
           {
             nameFormat: ["none"],
           },
@@ -94,7 +94,7 @@ describeAllImplementations(() => {
 
       it("applies all transformers when is set to all", async () => {
         const result = await fileToClassNames(
-          `${__dirname}/../dummy-styles/complex.scss`,
+          `${import.meta.dirname}/../dummy-styles/complex.scss`,
           {
             nameFormat: ["all"],
           },
@@ -121,7 +121,7 @@ describeAllImplementations(() => {
 
       it("applies multiple transformers when sent as an array", async () => {
         const result = await fileToClassNames(
-          `${__dirname}/../dummy-styles/complex.scss`,
+          `${import.meta.dirname}/../dummy-styles/complex.scss`,
           {
             nameFormat: ["kebab", "snake"],
           },
@@ -143,7 +143,7 @@ describeAllImplementations(() => {
 
       it("handles only a string", async () => {
         const result = await fileToClassNames(
-          `${__dirname}/../dummy-styles/complex.scss`,
+          `${import.meta.dirname}/../dummy-styles/complex.scss`,
           {
             nameFormat: "snake",
           },
@@ -162,7 +162,7 @@ describeAllImplementations(() => {
     describe("aliases", () => {
       it("converts a file that contains aliases", async () => {
         const result = await fileToClassNames(
-          `${__dirname}/../dummy-styles/aliases.scss`,
+          `${import.meta.dirname}/../dummy-styles/aliases.scss`,
           {
             aliases: {
               "~fancy-import": "complex",
@@ -186,7 +186,7 @@ describeAllImplementations(() => {
     describe("aliasPrefixes", () => {
       it("converts a file that contains alias prefixes (but prioritizes aliases)", async () => {
         const result = await fileToClassNames(
-          `${__dirname}/../dummy-styles/alias-prefixes.scss`,
+          `${import.meta.dirname}/../dummy-styles/alias-prefixes.scss`,
           {
             aliases: {
               "~fancy-import": "complex",
@@ -212,7 +212,7 @@ describeAllImplementations(() => {
     describe("composes", () => {
       it("converts a file that contains a composes dependency from another file", async () => {
         const result = await fileToClassNames(
-          `${__dirname}/../dummy-styles/composes.scss`,
+          `${import.meta.dirname}/../dummy-styles/composes.scss`,
           {},
         );
 
@@ -223,7 +223,7 @@ describeAllImplementations(() => {
     describe("additionalData", () => {
       it("adds additional data to enable adding any necessary context", async () => {
         const result = await fileToClassNames(
-          `${__dirname}/../dummy-styles/global-variables.scss`,
+          `${import.meta.dirname}/../dummy-styles/global-variables.scss`,
           {
             additionalData: "$global-red: red;",
           },

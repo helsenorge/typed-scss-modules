@@ -1,6 +1,6 @@
-import { LegacyImporterThis } from "sass";
+import type { LegacyImporterThis } from "sass";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { aliasImporter, customImporters } from "../../lib/sass/importer";
+import { aliasImporter, customImporters } from "../../lib/sass/importer.js";
 
 // SASS importers receive two other arguments that this package doesn't care about.
 // Fake `this` which the type definitions both define for importers.

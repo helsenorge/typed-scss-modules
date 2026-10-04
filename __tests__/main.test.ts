@@ -9,10 +9,10 @@ import {
   vi,
   type MockInstance,
 } from "vitest";
-import { alerts } from "../lib/core";
-import { main } from "../lib/main";
-import { slash } from "../lib/slash";
-import { describeAllImplementations } from "./helpers";
+import { alerts } from "../lib/core/index.js";
+import { main } from "../lib/main.js";
+import { slash } from "../lib/slash.js";
+import { describeAllImplementations } from "./helpers/index.js";
 
 describeAllImplementations(() => {
   describe("main", () => {
@@ -38,7 +38,7 @@ describeAllImplementations(() => {
     });
 
     it("generates types for all .scss files when the pattern is a directory", async () => {
-      const pattern = `${__dirname}/dummy-styles`;
+      const pattern = `${import.meta.dirname}/dummy-styles`;
 
       await main(pattern, {
         banner: "",
@@ -65,7 +65,9 @@ describeAllImplementations(() => {
       expect(alerts.error).not.toHaveBeenCalled();
       expect(fs.writeFileSync).toHaveBeenCalledTimes(9);
 
-      const expectedDirname = slash(path.join(__dirname, "dummy-styles"));
+      const expectedDirname = slash(
+        path.join(import.meta.dirname, "dummy-styles"),
+      );
 
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         `${expectedDirname}/complex.scss.d.ts`,
@@ -78,7 +80,7 @@ describeAllImplementations(() => {
     });
 
     it("generates types for all .scss files and ignores files that match the ignore pattern", async () => {
-      const pattern = `${__dirname}/dummy-styles`;
+      const pattern = `${import.meta.dirname}/dummy-styles`;
 
       await main(pattern, {
         banner: "",
@@ -105,7 +107,9 @@ describeAllImplementations(() => {
       expect(alerts.error).not.toHaveBeenCalled();
       expect(fs.writeFileSync).toHaveBeenCalledTimes(7);
 
-      const expectedDirname = slash(path.join(__dirname, "dummy-styles"));
+      const expectedDirname = slash(
+        path.join(import.meta.dirname, "dummy-styles"),
+      );
 
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         `${expectedDirname}/complex.scss.d.ts`,
@@ -124,7 +128,7 @@ describeAllImplementations(() => {
     });
 
     it("reads options from the configuration file", async () => {
-      const pattern = `${__dirname}/dummy-styles`;
+      const pattern = `${import.meta.dirname}/dummy-styles`;
 
       vi.spyOn(process, "cwd").mockReturnValue(path.resolve(pattern));
 
@@ -146,7 +150,7 @@ describeAllImplementations(() => {
       // Transform the calls into a more readable format for the snapshot.
       const contents = writeFileSyncSpy.mock.calls
         .map(([fullFilePath, contents]) => ({
-          path: path.relative(__dirname, fullFilePath as string),
+          path: path.relative(import.meta.dirname, fullFilePath as string),
           contents,
         }))
         // Sort to avoid flakey snapshot tests if call order changes.
@@ -156,7 +160,7 @@ describeAllImplementations(() => {
     });
 
     it("outputs the correct files when outputFolder is passed", async () => {
-      const pattern = path.resolve(__dirname, "dummy-styles");
+      const pattern = path.resolve(import.meta.dirname, "dummy-styles");
 
       await main(pattern, {
         additionalData: "$global-red: red;",
@@ -177,7 +181,7 @@ describeAllImplementations(() => {
       // Transform the calls into a more readable format for the snapshot.
       const contents = writeFileSyncSpy.mock.calls
         .map(([fullFilePath, contents]) => ({
-          path: path.relative(__dirname, fullFilePath as string),
+          path: path.relative(import.meta.dirname, fullFilePath as string),
           contents,
         }))
         // Sort to avoid flakey snapshot tests if call order changes.

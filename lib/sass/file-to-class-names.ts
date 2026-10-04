@@ -1,10 +1,14 @@
-import { camelCase, kebabCase, Options, snakeCase } from "change-case";
+import { camelCase, kebabCase, type Options, snakeCase } from "change-case";
 import fs from "fs";
-import { getImplementation } from "../implementations";
-import { Aliases, customImporters, SASSImporterOptions } from "./importer";
-import { sourceToClassNames } from "./source-to-class-names";
+import { getImplementation } from "../implementations/index.js";
+import {
+  type Aliases,
+  customImporters,
+  type SASSImporterOptions,
+} from "./importer.js";
+import { sourceToClassNames } from "./source-to-class-names.js";
 
-export { Aliases };
+export { type Aliases };
 export type ClassName = string;
 interface Transformer {
   (className: ClassName): string;

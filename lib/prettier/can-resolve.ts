@@ -1,8 +1,8 @@
 // Extracted to a separate module so it can be mocked in tests,
-// as require.resolve and runtime require calls can't be mocked directly.
+// as import.meta.resolve and dynamic imports can't be mocked directly.
 export function canResolvePrettier() {
   try {
-    require.resolve("prettier");
+    import.meta.resolve("prettier");
     return true;
   } catch {
     // cannot resolve prettier
@@ -10,7 +10,7 @@ export function canResolvePrettier() {
   }
 }
 
-export function loadPrettier(): unknown {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  return require("prettier");
+export async function loadPrettier(): Promise<unknown> {
+  const prettier: { default?: unknown } = await import("prettier");
+  return prettier.default ?? prettier;
 }

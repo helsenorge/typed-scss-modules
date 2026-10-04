@@ -1,4 +1,4 @@
-import sass from "sass";
+import * as sass from "sass";
 
 /**
  * A list of all possible SASS package implementations that can be used to
@@ -27,6 +27,5 @@ export const getDefaultImplementation = (): Implementations => {
  * @param implementation the desired implementation.
  */
 export const getImplementation = (): Implementation => {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-require-imports
-  return require("sass");
+  return sass;
 };

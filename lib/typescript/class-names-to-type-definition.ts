@@ -1,8 +1,8 @@
 import os from "os";
 import reserved from "reserved-words";
-import { alerts } from "../core";
-import { attemptPrettier } from "../prettier";
-import type { ClassName } from "../sass/file-to-class-names";
+import { alerts } from "../core/index.js";
+import { attemptPrettier } from "../prettier/index.js";
+import type { ClassName } from "../sass/file-to-class-names.js";
 
 export type ExportType = "named" | "default";
 export const EXPORT_TYPES: ExportType[] = ["named", "default"];

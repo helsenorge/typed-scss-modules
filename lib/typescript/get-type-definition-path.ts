@@ -1,5 +1,5 @@
 import path from "path";
-import { ConfigOptions } from "../core";
+import type { ConfigOptions } from "../core/index.js";
 
 const CURRENT_WORKING_DIRECTORY = process.cwd();
 
